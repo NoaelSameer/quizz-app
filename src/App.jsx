@@ -7,7 +7,7 @@ function App() {
   return (
     <>
     <Questioner />
-    <p>hi</p>
+    {/* <p>hi</p> */}
     </>
   );
 }
