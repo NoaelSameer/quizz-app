@@ -188,6 +188,16 @@ const questionData = [
             "x(x - 12)"
         ],
         answer: "3x(x - 4)"
+    },
+    {
+        question: "Factor the polynomial: x^2 + 7x + 10",
+        options: [
+            "(x + 5)(x + 2)", // Correct
+            "(x + 10)(x + 7)",
+            "(x + 2)(x - 5)",
+            "(x - 10)(x - 7)"
+        ],
+        answer: "(x + 5)(x + 2)"
     }
 ];
 

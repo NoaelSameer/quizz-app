@@ -5,14 +5,12 @@ import { useState, useEffect } from'react'
 
 
 function Questioner() {
-  let wrong = 0, right = 0
   const [value, setValue] = useState(0);
   const [question, setQuestion] = useState(questionsData[value])
   const [score, setScore] = useState(0);
-
-  useEffect(()=>{
-    wrong
-  },[score])
+  const [correct, setCorrect] = useState(0)
+  const [wrong, setWrong] = useState(0);
+  const [answered, setAnswered] = useState(false);
   
   // useEffect(()=>{
   //   setScore(right - wrong)
@@ -25,7 +23,9 @@ function Questioner() {
   // const [question, setQuestion] = useState(questionsData[value])
 
   useEffect(() => {
-    setQuestion(questionsData[value])
+    if(answered){
+      setQuestion(questionsData[value])
+      setAnswered(false);}
   }, [value])
 
 
@@ -33,14 +33,18 @@ function Questioner() {
 
     if(answer === question.answer){
       setScore(score + 1)
+      setCorrect(correct + 1)
       alert("correct")
       let buttons = document.querySelectorAll('.btn');
       buttons.forEach(button => button.disabled = true);
+      setAnswered(true)
 
     } else {
-      setScore(score - 1);
-      wrong++;
-      alert("wrong")
+      setWrong(wrong + 1)
+      let buttons = document.querySelectorAll('.btn');
+      buttons.forEach(button => button.disabled = true);
+      alert("Incorrect, the correct answer was " + question.answer)   
+      setAnswered(true); 
     }
   }
 
@@ -59,13 +63,31 @@ function Questioner() {
     <button className='flex btn items-center' onClick={buttonChecker(option)}>{option}</button>)}
     </div>
     <div className='flex flex-col items-center mt-[2vh]'>
-      {value === questionsData.length - 1 ? <p>Cooked</p> : <button className='flex items-center' onClick={() => { setValue(value + 1);cleaner();}}>Next Question</button>}
+    {
+  value === questionsData.length - 1 ? (
+    <p>Cooked</p>
+  ) : !answered ? (
+    <button className="flex items-center">
+      Next Question
+    </button>
+  ) : (
+    <button
+      className="flex items-center"
+      onClick={() => {
+        setValue(value + 1);
+        cleaner();
+      }}
+    >
+      Next Question
+    </button>
+  )
+}
     </div>
     
     <div>
       <p>Score: {score}</p>
-      <p>Wrong/Right ratio:{wrong}/{right}</p>
-      <p>Total Questions left: {questionsData.length - value}</p>
+      <p>Wrong/Right ratio: {wrong}/{correct}</p>
+      <p>Current Question: {value}</p>
     </div>
 
 

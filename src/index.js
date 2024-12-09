@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './pages/css/index.css';
 import App from './App';
+import Quizz from './Quizz';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 
 const router = createBrowserRouter([
   {path:"/", element: <App />},
+  {path:"/quizz", element:<Quizz /> }
   // {path:"/gallery", element: <Gallery />},
   // Add more routes as needed
 ]);

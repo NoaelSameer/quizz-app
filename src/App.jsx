@@ -1,4 +1,3 @@
-import Questioner from "./components/Questions";
 
 
 function App() {
@@ -6,8 +5,9 @@ function App() {
   
   return (
     <>
-    <Questioner />
-    {/* <p>hi</p> */}
+    <p className="text-center mt-[10%] text-[5vw]">The Quizz Game!</p>
+
+    <button><a href="/bob">bob</a></button>
     </>
   );
 }
