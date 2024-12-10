@@ -56,43 +56,41 @@ function Questioner() {
 
   return(
     <>
-    <h1 className="text-center mt-[8vh] text-[5vw]">The Quizz Game</h1>
-    <h1 className='text-center mt-[4vh] text-[2vw] font-bold'>{question.question}</h1>
-    <div className="flex flex-col items-center gap-[1vh] mt-[3vh]">
-    {question.options.map(option =>
-    <button className='flex btn items-center' onClick={buttonChecker(option)}>{option}</button>)}
-    </div>
-    <div className='flex flex-col items-center mt-[2vh]'>
-    {
-  value === questionsData.length - 1 ? (
-    <p>Cooked</p>
-  ) : !answered ? (
-    <button className="flex items-center">
-      Next Question
-    </button>
-  ) : (
-    <button
-      className="flex items-center"
-      onClick={() => {
-        setValue(value + 1);
-        cleaner();
-      }}
-    >
-      Next Question
-    </button>
-  )
-}
-    </div>
-    
-    <div>
-      <p>Score: {score}</p>
-      <p>Wrong/Right ratio: {wrong}/{correct}</p>
-      <p>Current Question: {value}</p>
-    </div>
-
-
-
-  </>
+      <div className="min-h-screen bg-gray-100 text-gray-800 p-[20vw]">
+        <h1 className="text-center mt-[3vh] text-[4vw] font-bold text-blue-600">
+          The Quiz Game
+        </h1>
+        <h2 className="text-center mt-[3vh] text-[2vw] font-semibold">
+          {question.question}
+        </h2>
+        <div className="flex flex-col items-center gap-4 mt-[3vh]">
+          {question.options.map((option, index) => (
+            <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white px-[2vw] py-2 rounded shadow"onClick={buttonChecker(option)}>{option}</button>))}
+        </div>
+        <div className="flex flex-col items-center mt-[2vh]">
+          {value == questionsData.length - 1 ? (
+            <p className="text-lg font-semibold text-gray-700">Game Over!</p>
+          ) : !answered ? (
+            <button
+              className="bg-gray-300 text-gray-700 px-[1vw] py-[.75vh] rounded cursor-not-allowed"
+              disabled
+            >Next Question</button>
+          ):(
+            <button
+              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded shadow"
+              onClick={() => {
+                setValue(value + 1);
+                cleaner();
+              }}
+            >Next Question</button>)}
+        </div>
+        <div className="mt-[2.5vh] text-center bg-white p-[1.5vw] rounded shadow-md">
+          <p className="text-lg font-medium">Score: {score}</p>
+          <p className="text-lg font-medium">Wrong/Right Ratio: {wrong}/{correct}</p>
+          <p className="text-lg font-medium">Current Question: {value + 1}</p>
+        </div>
+      </div>
+    </>
   );
 }
 export default Questioner
